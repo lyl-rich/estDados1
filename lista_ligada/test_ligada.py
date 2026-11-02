@@ -19,3 +19,5 @@ def test_exibir_lista(lista):
 def test_print_str_lista(lista):
     print(lista)
     assert "10 -> 20 -> 30 -> 40 -> null"
+    
+teste push att
