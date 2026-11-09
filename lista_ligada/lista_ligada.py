@@ -101,11 +101,10 @@ class ListaLigada:
                 return True
             
             atual = self.primeiro
-            novo_no = No(item)
-            
             for _ in range(posicao - 1):
                 atual = atual.proximo
-                
+            
+            novo_no = No(item)
             novo_no.proximo = atual.proximo
             atual.proximo = novo_no
             self.tamanho += 1
@@ -119,11 +118,32 @@ class ListaLigada:
         e puxa os demais itens para o início da lista.
         Ao final, retorna True. Caso a posição não exista na lista, retorna False. O(n)"""
 
-        pass
+        if 0 <= posicao < self.tamanho:
+            if (posicao == 0):
+                self.primeiro = self.primeiro.proximo
+                self.tamanho -= 1
+                return True
+            
+            atual = self.primeiro
+            for _ in range(posicao - 1):
+                atual = atual.proximo
+                
+            atual.proximo = atual.proximo.proximo
+            self.tamanho -= 1
+            
+            return True
+        return False
 
 
     def remover_item(self, item):
         """ Remove um item existente na lista e retorna True.
-        Caso o item não seja encontrado, retorna False. O()"""
+        Caso o item não seja encontrado, retorna False. O(n)"""
 
-        pass
+        atual = self.primeiro
+        for posicao in range(self.tamanho):
+            if atual.item == item:
+                self.remover(posicao)
+                return True
+            
+            atual = atual.proximo
+        return False

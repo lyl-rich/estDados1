@@ -55,12 +55,56 @@ def test_inserir_true(lista):
     assert str(lista) == "10 -> 20 -> 25 -> 30 -> 40 -> null"
     assert lista.tamanho == 5
 
-''' TERMINAR
-def test_inserir_false(lista):
-    assert lista.inserir(2, 25) is True
-    assert str(lista) == "10 -> 20 -> 25 -> 30 -> 40 -> null"
+
+def test_inserir_posicao_igual_tamanho(lista):
+    assert lista.inserir(4, 45) is True
+    assert str(lista) == "10 -> 20 -> 30 -> 40 -> 45 -> null"
     assert lista.tamanho == 5
-'''
+
+
+def test_inserir_false(lista):
+    assert lista.inserir(5, 50) is False
+    assert str(lista) == "10 -> 20 -> 30 -> 40 -> null"
+    assert lista.tamanho == 4
+
+
+def test_remover_true(lista):
+    assert lista.remover(2) == True
+    assert str(lista) == "10 -> 20 -> 40 -> null"
+    assert lista.tamanho == 3
+    
+
+
+def test_remover_false(lista):
+    assert lista.remover(4) == False
+    assert str(lista) == "10 -> 20 -> 30 -> 40 -> null"
+    assert lista.tamanho == 4
+
+
+def test_remover_primeir0(lista):
+    assert lista.remover(0) == True
+    assert lista.primeiro.item == 20
+    assert str(lista) == "20 -> 30 -> 40 -> null"
+
+
+def test_remover_item_true(lista):
+    assert lista.remover_item(30) == True
+    assert str(lista) == "10 -> 20 -> 40 -> null"
+    assert lista.tamanho == 3
+    
+
+
+def test_remover_item_false(lista):
+    assert lista.remover_item(15) == False
+    assert str(lista) == "10 -> 20 -> 30 -> 40 -> null"
+    assert lista.tamanho == 4
+
+
+def test_remover_item_primeir0(lista):
+    assert lista.remover_item(10) == True
+    assert lista.primeiro.item == 20
+    assert str(lista) == "20 -> 30 -> 40 -> null"
+
 
 if __name__ == "__main__":
     pytest.main(["-v"])
