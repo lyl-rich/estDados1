@@ -7,17 +7,8 @@ class ListaLigada:
         self.tamanho = 0
 
 
-    def inserir_inicio(self, item):
-        """ Adiciona no inicio da lista """
-
-        novo_no = No(item)
-        novo_no.proximo = self.primeiro
-        self.primeiro = novo_no
-        self.tamanho += 1
-
-
     def adicionar(self, item):
-        """ Adiciona no fim da lista """
+        """ Adiciona no fim da lista - O(n)"""
 
         novo_no = No(item)
         if self.primeiro is None:
@@ -30,73 +21,109 @@ class ListaLigada:
         self.tamanho += 1
 
 
-    def exibir(self):
-        """ Exibe os itens da lista """
+    def inserir_inicio(self, item):
+        """ Adiciona no inicio da lista - O(1)"""
 
-        no_atual = self.primeiro
-        while no_atual:
-            print(no_atual.item, end=" -> ")
-            no_atual = no_atual.proximo
+        novo_no = No(item)
+        novo_no.proximo = self.primeiro
+        self.primeiro = novo_no
+        self.tamanho += 1
+
+
+    def exibir(self):
+        """ Exibe os itens da lista - O(n)"""
+
+        atual = self.primeiro
+        while atual:
+            print(atual.item, end=" -> ")
+            atual = atual.proximo
         print("null")
+
+
+    def __str__(self):
+        """ Retorna uma representação em string da lista - O(n)"""
+
+        itens = []
+        atual = self.primeiro
+        while atual:
+            itens.append(str(atual.item))
+            atual = atual.proximo
+        return " -> ".join(itens) + " -> null"
 
 
     '''
     def __str__(self):
-        """ Retorna uma representação em string da lista """
+        """ Retorna uma representação em string da lista - O(n)"""
 
-        no_atual = self.primeiro
+        atual = self.primeiro
         string = ""
 
-        while no_atual:
-            string += no_atual.item + " -> "
-            no_atual = no_atual.proximo
+        while atual:
+            string += atual.item + " -> "
+            atual = atual.proximo
         return string + "null"
     '''
 
 
-    def __str__(self):
-        """ Retorna uma representação em string da lista """
-
-        itens = []
-        no_atual = self.primeiro
-        while no_atual:
-            itens.append(str(no_atual.item))
-            no_atual = no_atual.proximo
-        return " -> ".join(itens) + " -> null"
-
-
     def pesquisar(self, item):
         """ Retorna True caso o item procurado exista na lista e
-        False, em caso contrário. """
-
-        pass
+        False, em caso contrário. O(n)"""
+        
+        atual = self.primeiro
+        while atual:
+            if atual.item == item:
+                return True
+            atual = atual.proximo
+        return False
 
 
     def obter(self, posicao):
         """ Retorna o item guardado em uma determinada posição da lista.
-        Caso a posição não exista na lista, retorna None. """
-
-        pass
+        Caso a posição não exista na lista, retorna None. O(n)"""
+        
+        if 0 < posicao < self.tamanho:
+            atual = self.primeiro
+            for _ in range(posicao):
+                atual = atual.proximo
+            
+            return atual.item
+        return None
 
 
     def inserir(self, posicao, item):
-         """ Adiciona um item em uma posição da lista
+        """ Adiciona um item em uma posição da lista
         empurrando os demais itens para o fim da lista.
-        Se a posição não é válida, retorna False. """
-         
-         pass
+        Se a posição não é válida, retorna False. O(n)"""
+        
+        if 0 <= posicao <= self.tamanho:
+            if posicao == 0:
+                self.inserir_inicio(item)
+                return True
+            
+            atual = self.primeiro
+            novo_no = No(item)
+            
+            for _ in range(posicao - 1):
+                atual = atual.proximo
+                
+            novo_no.proximo = atual.proximo
+            atual.proximo = novo_no
+            self.tamanho += 1
+            
+            return True
+        return False
 
 
     def remover(self, posicao):
         """ Remove um item de uma posição da lista
         e puxa os demais itens para o início da lista.
-        Ao final, retorna True. Caso a posição não exista na lista, retorna False. """
+        Ao final, retorna True. Caso a posição não exista na lista, retorna False. O(n)"""
 
         pass
 
 
     def remover_item(self, item):
         """ Remove um item existente na lista e retorna True.
-        Caso o item não seja encontrado, retorna False. """
+        Caso o item não seja encontrado, retorna False. O()"""
 
         pass
