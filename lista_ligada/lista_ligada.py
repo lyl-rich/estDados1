@@ -1,10 +1,19 @@
 from no import No
 
-class Lista_Ligada:
+class ListaLigada:
 
     def __init__(self):
         self.primeiro: No = None
         self.tamanho = 0
+
+
+    def inserir_inicio(self, item):
+        """ Adiciona no inicio da lista """
+
+        novo_no = No(item)
+        novo_no.proximo = self.primeiro
+        self.primeiro = novo_no
+        self.tamanho += 1
 
 
     def adicionar(self, item):
@@ -29,8 +38,22 @@ class Lista_Ligada:
             print(no_atual.item, end=" -> ")
             no_atual = no_atual.proximo
         print("null")
-        
-        
+
+
+    '''
+    def __str__(self):
+        """ Retorna uma representação em string da lista """
+
+        no_atual = self.primeiro
+        string = ""
+
+        while no_atual:
+            string += no_atual.item + " -> "
+            no_atual = no_atual.proximo
+        return string + "null"
+    '''
+
+
     def __str__(self):
         """ Retorna uma representação em string da lista """
 
