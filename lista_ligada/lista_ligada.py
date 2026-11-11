@@ -1,4 +1,4 @@
-from no import No
+from lista_ligada.no import No
 
 class ListaLigada:
 
@@ -147,3 +147,7 @@ class ListaLigada:
             
             atual = atual.proximo
         return False
+
+
+    def vazia(self):
+        return self.tamanho == 0
