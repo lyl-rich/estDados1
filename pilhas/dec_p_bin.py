@@ -1,6 +1,5 @@
 from pilhas.pilha import Pilha
 
-
 def decimal_para_binario(num):
     pilha = Pilha()
 

@@ -8,7 +8,11 @@
     "terminal.integrated.env.osx": {
         "PYTHONPATH": "${workspaceFolder}"
     },
-    "python.envFile": "${workspaceFolder}/.env",
-    "python.analysis.extraPaths": ["${workspaceFolder}"],
-    "python.autoComplete.extraPaths": ["${workspaceFolder}"]
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}"
+    ],
+    "code-runner.fileDirectoryAsCwd": false,
+    "code-runner.executorMap": {
+        "python": "python -u -m"
+    }
 }
