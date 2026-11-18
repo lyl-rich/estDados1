@@ -1,6 +1,6 @@
 from lista_ligada.lista_ligada import ListaLigada
 
-class Pilha():
+class Pilha:
 
     def __init__(self):
         self._elementos = ListaLigada()
